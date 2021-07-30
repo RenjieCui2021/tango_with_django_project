@@ -49,22 +49,6 @@ def add_category(request):
 
     return render(request, 'rango/add_category.html', {'form': form})
 
-
-def add_category(request):
-    form = CategoryForm()
-
-    if request.method == 'POST':
-        form = CategoryForm(request.POST)
-
-        if form.is_valid():
-            form.save(commit=True)
-            return redirect('/rango/')
-        else:
-            print(form.errors)
-
-    return render(request, 'rango/add_category.html', {'form': form})
-
-
 def add_page(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
